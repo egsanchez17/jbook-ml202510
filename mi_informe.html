@@ -363,16 +363,235 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
-    train: Dataset({
-        features: [&#39;HelpfulnessNumerator&#39;, &#39;HelpfulnessDenominator&#39;, &#39;Summary&#39;, &#39;text&#39;, &#39;labels&#39;, &#39;sentiment_code&#39;, &#39;input_ids&#39;, &#39;attention_mask&#39;],
-        num_rows: 303316
-    })
-    test: Dataset({
-        features: [&#39;HelpfulnessNumerator&#39;, &#39;HelpfulnessDenominator&#39;, &#39;Summary&#39;, &#39;text&#39;, &#39;labels&#39;, &#39;sentiment_code&#39;, &#39;input_ids&#39;, &#39;attention_mask&#39;],
-        num_rows: 116661
-    })
-})
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">6</span><span class="n">f</span><span class="o">/</span><span class="n">tr98z70j73n1m4xh0tbwvs4h0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_8098</span><span class="o">/</span><span class="mf">1234065675.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Cargar el dataset desde Huggin Face</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;akshatmehta98/amazon_reviews&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> 
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Mostrando estructura del dataset</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">load_dataset</span><span class="nt">(path, name, data_dir, data_files, split, cache_dir, features, download_config, download_mode, verification_mode, keep_in_memory, save_infos, revision, token, streaming, num_proc, storage_options, trust_remote_code, **config_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2059</span> 
+<span class="g g-Whitespace">   </span><span class="mi">2060</span>     <span class="c1"># Create a dataset builder</span>
+<span class="ne">-&gt; </span><span class="mi">2061</span>     <span class="n">builder_instance</span> <span class="o">=</span> <span class="n">load_dataset_builder</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2062</span>         <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2063</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">load_dataset_builder</span><span class="nt">(path, name, data_dir, data_files, cache_dir, features, download_config, download_mode, revision, token, storage_options, trust_remote_code, _require_default_config_name, **config_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1779</span>         <span class="n">download_config</span> <span class="o">=</span> <span class="n">download_config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">download_config</span> <span class="k">else</span> <span class="n">DownloadConfig</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1780</span>         <span class="n">download_config</span><span class="o">.</span><span class="n">storage_options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">storage_options</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1781</span>     <span class="n">dataset_module</span> <span class="o">=</span> <span class="n">dataset_module_factory</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1782</span>         <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1783</span>         <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">dataset_module_factory</span><span class="nt">(path, revision, download_config, download_mode, dynamic_modules_path, data_dir, data_files, cache_dir, trust_remote_code, _require_default_config_name, _require_custom_configs, **download_kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1618</span>                 <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1619</span>                     <span class="n">use_exported_dataset_infos</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="ne">-&gt; </span><span class="mi">1620</span>                 <span class="k">return</span> <span class="n">HubDatasetModuleFactoryWithoutScript</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1621</span>                     <span class="n">path</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1622</span>                     <span class="n">commit_hash</span><span class="o">=</span><span class="n">commit_hash</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">get_module</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1015</span>             <span class="n">patterns</span> <span class="o">=</span> <span class="n">sanitize_patterns</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">metadata_configs</span><span class="o">.</span><span class="n">values</span><span class="p">()))[</span><span class="s2">&quot;data_files&quot;</span><span class="p">])</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1017</span>             <span class="n">patterns</span> <span class="o">=</span> <span class="n">get_data_patterns</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1018</span>         <span class="n">data_files</span> <span class="o">=</span> <span class="n">DataFilesDict</span><span class="o">.</span><span class="n">from_patterns</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1019</span>             <span class="n">patterns</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/data_files.py</span> in <span class="ni">get_data_patterns</span><span class="nt">(base_path, download_config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span>     <span class="n">resolver</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">resolve_pattern</span><span class="p">,</span> <span class="n">base_path</span><span class="o">=</span><span class="n">base_path</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">474</span>         <span class="k">return</span> <span class="n">_get_data_files_patterns</span><span class="p">(</span><span class="n">resolver</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">476</span>         <span class="k">raise</span> <span class="n">EmptyDatasetError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The directory at </span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2"> doesn&#39;t contain any data files&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/data_files.py</span> in <span class="ni">_get_data_files_patterns</span><span class="nt">(pattern_resolver)</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="n">pattern</span> <span class="o">=</span> <span class="n">split_pattern</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{split}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">263</span>             <span class="n">data_files</span> <span class="o">=</span> <span class="n">pattern_resolver</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">264</span>         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">265</span>             <span class="k">continue</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/data_files.py</span> in <span class="ni">resolve_pattern</span><span class="nt">(pattern, base_path, allowed_extensions, download_config)</span>
+<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="n">matched_paths</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">    </span><span class="mi">360</span>         <span class="n">filepath</span> <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">protocol_prefix</span><span class="p">)</span> <span class="k">else</span> <span class="n">protocol_prefix</span> <span class="o">+</span> <span class="n">filepath</span>
+<span class="nn">--&gt; 361         for filepath, info</span> in <span class="ni">fs.glob(pattern, detail=True, **glob_kwargs).items</span><span class="nt">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;islink&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">filepath</span><span class="p">))))</span>
+<span class="g g-Whitespace">    </span><span class="mi">363</span>         <span class="ow">and</span> <span class="p">(</span><span class="n">xbasename</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">files_to_ignore</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">glob</span><span class="nt">(self, path, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;expand_info&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;revision&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">unresolve</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">521</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span> 
+<span class="g g-Whitespace">    </span><span class="mi">523</span>     <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/fsspec/spec.py</span> in <span class="ni">glob</span><span class="nt">(self, path, maxdepth, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">607</span>                 <span class="n">depth</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span> 
+<span class="ne">--&gt; </span><span class="mi">609</span>         <span class="n">allpaths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span> <span class="n">withdirs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">610</span> 
+<span class="g g-Whitespace">    </span><span class="mi">611</span>         <span class="n">pattern</span> <span class="o">=</span> <span class="n">glob_translate</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;/&quot;</span> <span class="k">if</span> <span class="n">ends_with_sep</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">find</span><span class="nt">(self, path, maxdepth, withdirs, detail, refresh, revision, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">554</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span><span class="sd">         if maxdepth:</span>
+<span class="ne">--&gt; </span><span class="mi">556</span><span class="sd">             return super().find(</span>
+<span class="g g-Whitespace">    </span><span class="mi">557</span><span class="sd">                 path, maxdepth=maxdepth, withdirs=withdirs, detail=detail, refresh=refresh, revision=revision, **kwargs</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span><span class="sd">             )</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/fsspec/spec.py</span> in <span class="ni">find</span><span class="nt">(self, path, maxdepth, withdirs, detail, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">500</span><span class="sd">             out[path] = self.info(path)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span><span class="sd"> </span>
+<span class="ne">--&gt; </span><span class="mi">502</span><span class="sd">         for _, dirs, files in self.walk(path, maxdepth, detail=True, **kwargs):</span>
+<span class="g g-Whitespace">    </span><span class="mi">503</span><span class="sd">             if withdirs:</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span><span class="sd">                 files.update(dirs)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">walk</span><span class="nt">(self, path, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span><span class="sd">         kwargs = {&quot;expand_info&quot;: kwargs.get(&quot;detail&quot;, False), **kwargs}</span>
+<span class="g g-Whitespace">    </span><span class="mi">502</span><span class="sd">         path = self.resolve_path(path, revision=kwargs.get(&quot;revision&quot;)).unresolve()</span>
+<span class="ne">--&gt; </span><span class="mi">503</span><span class="sd">         yield from super().walk(path, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">504</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="sd">     def glob(self, path: str, **kwargs) -&gt; List[str]:</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/fsspec/spec.py</span> in <span class="ni">walk</span><span class="nt">(self, path, maxdepth, topdown, on_error, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">425</span><span class="sd">         detail = kwargs.pop(&quot;detail&quot;, False)</span>
+<span class="g g-Whitespace">    </span><span class="mi">426</span><span class="sd">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">427</span><span class="sd">             listing = self.ls(path, detail=True, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">428</span><span class="sd">         except (FileNotFoundError, OSError) as e:</span>
+<span class="g g-Whitespace">    </span><span class="mi">429</span><span class="sd">             if on_error == &quot;raise&quot;:</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">ls</span><span class="nt">(self, path, detail, refresh, revision, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span><span class="sd">         kwargs = {&quot;expand_info&quot;: detail, **kwargs}</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span><span class="sd">         try:</span>
+<span class="ne">--&gt; </span><span class="mi">372</span><span class="sd">             out = self._ls_tree(path, refresh=refresh, revision=revision, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">373</span><span class="sd">         except EntryNotFoundError:</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span><span class="sd">             # Path could be a file</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">_ls_tree</span><span class="nt">(self, path, recursive, refresh, revision, expand_info)</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span><span class="sd">                 repo_type=resolved_path.repo_type,</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span><span class="sd">             )</span>
+<span class="ne">--&gt; </span><span class="mi">463</span><span class="sd">             for path_info in tree:</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span><span class="sd">                 if isinstance(path_info, RepoFile):</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span><span class="sd">                     cache_path_info = {</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_api.py</span> in <span class="ni">list_repo_tree</span><span class="nt">(self, repo_id, path_in_repo, recursive, expand, revision, repo_type, token)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3056</span><span class="sd">         encoded_path_in_repo = &quot;/&quot; + quote(path_in_repo, safe=&quot;&quot;) if path_in_repo else &quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">3057</span><span class="sd">         tree_url = f&quot;{self.endpoint}/api/{repo_type}s/{repo_id}/tree/{revision}{encoded_path_in_repo}&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">3058</span><span class="sd">         for path_info in paginate(path=tree_url, headers=headers, params={&quot;recursive&quot;: recursive, &quot;expand&quot;: expand}):</span>
+<span class="g g-Whitespace">   </span><span class="mi">3059</span><span class="sd">             yield (RepoFile(**path_info) if path_info[&quot;type&quot;] == &quot;file&quot; else RepoFolder(**path_info))</span>
+<span class="g g-Whitespace">   </span><span class="mi">3060</span><span class="sd"> </span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/utils/_pagination.py</span> in <span class="ni">paginate</span><span class="nt">(path, params, headers)</span>
+<span class="g g-Whitespace">     </span><span class="mi">34</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">session</span> <span class="o">=</span> <span class="n">get_session</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">36</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">hf_raise_for_status</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="k">yield from</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">get</span><span class="nt">(self, url, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">600</span> 
+<span class="g g-Whitespace">    </span><span class="mi">601</span>         <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;allow_redirects&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">602</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">603</span> 
+<span class="g g-Whitespace">    </span><span class="mi">604</span>     <span class="k">def</span><span class="w"> </span><span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
+<span class="g g-Whitespace">    </span><span class="mi">587</span>         <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">588</span>         <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">589</span>         <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">590</span> 
+<span class="g g-Whitespace">    </span><span class="mi">591</span>         <span class="k">return</span> <span class="n">resp</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span> 
+<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="c1"># Send the request</span>
+<span class="ne">--&gt; </span><span class="mi">703</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">704</span> 
+<span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="c1"># Total elapsed time of the request (approximately)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/utils/_http.py</span> in <span class="ni">send</span><span class="nt">(self, request, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">94</span>             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Send: </span><span class="si">{</span><span class="n">_curlify</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">95</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">96</span>             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span>         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">98</span>             <span class="n">request_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">X_AMZN_TRACE_ID</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
+<span class="g g-Whitespace">    </span><span class="mi">665</span> 
+<span class="g g-Whitespace">    </span><span class="mi">666</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">667</span>             <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">668</span>                 <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">669</span>                 <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">697</span> 
+<span class="g g-Whitespace">    </span><span class="mi">698</span>             <span class="c1"># Make the request on the httplib connection object.</span>
+<span class="ne">--&gt; </span><span class="mi">699</span>             <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">700</span>                 <span class="n">conn</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">701</span>                 <span class="n">method</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span>                     <span class="c1"># Python 3 (including for exceptions like SystemExit).</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span>                     <span class="c1"># Otherwise it looks like a bug in the code.</span>
+<span class="ne">--&gt; </span><span class="mi">445</span>                     <span class="n">six</span><span class="o">.</span><span class="n">raise_from</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">446</span>         <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">,</span> <span class="n">SocketError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">447</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_timeout</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="n">read_timeout</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/packages/six.py</span> in <span class="ni">raise_from</span><span class="nt">(value, from_value)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
+<span class="g g-Whitespace">    </span><span class="mi">438</span>                 <span class="c1"># Python 3</span>
+<span class="g g-Whitespace">    </span><span class="mi">439</span>                 <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">440</span>                     <span class="n">httplib_response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span>                 <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">442</span>                     <span class="c1"># Remove the TypeError from the exception chain in</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1375</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1376</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1377</span>                 <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1378</span>             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1379</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="c1"># read until we get a non-100 response</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">320</span>             <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>             <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>                 <span class="k">break</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span> 
+<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_read_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">281</span>         <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">_MAXLINE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_MAXLINE</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">283</span>             <span class="k">raise</span> <span class="n">LineTooLong</span><span class="p">(</span><span class="s2">&quot;status line&quot;</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
+<span class="g g-Whitespace">    </span><span class="mi">714</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">715</span>             <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">716</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">717</span>             <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">718</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1273</span>                   <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+<span class="g g-Whitespace">   </span><span class="mi">1274</span>                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1275</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1276</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1277</span>             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1131</span>         <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1132</span>             <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1133</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1134</span>             <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1135</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -955,7 +1174,8 @@ Valid split: (60664, 12)
 <h3>Tokenización y Embeddings<a class="headerlink" href="#tokenizacion-y-embeddings" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verificamos que el equipo (MAC) este usando la GPU</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 
 <span class="n">device</span> <span class="o">=</span> <span class="s1">&#39;mps&#39;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">mps</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s1">&#39;cpu&#39;</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;✅ Dispositivo seleccionado: </span><span class="si">{</span><span class="n">device</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -999,23 +1219,9 @@ Valid split: (60664, 12)
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b121582e82784cdf9314a850d950c1c2"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">6</span><span class="n">f</span><span class="o">/</span><span class="n">tr98z70j73n1m4xh0tbwvs4h0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_7980</span><span class="o">/</span><span class="mf">1125858030.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Generar embeddings</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">X_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">df_train_split</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X_valid</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">df_valid</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">X_test</span>  <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>  <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> 
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/sentence_transformers/SentenceTransformer.py</span> in <span class="ni">encode</span><span class="nt">(self, sentences, prompt_name, prompt, batch_size, show_progress_bar, output_value, precision, convert_to_numpy, convert_to_tensor, device, normalize_embeddings, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">584</span>                     <span class="c1"># fixes for #522 and #487 to avoid oom problems on gpu with large datasets</span>
-<span class="g g-Whitespace">    </span><span class="mi">585</span>                     <span class="k">if</span> <span class="n">convert_to_numpy</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">586</span>                         <span class="n">embeddings</span> <span class="o">=</span> <span class="n">embeddings</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span> 
-<span class="g g-Whitespace">    </span><span class="mi">588</span>                 <span class="n">all_embeddings</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">embeddings</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "268ee2003c334ddab6c21ecac2c4e5fa", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "765a9e7b8fc94ef282cfc78c004c7eee", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0431676e728f4b649f952a9bb13ba160", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ X_train: (242652, 768)
+✅ X_valid: (60664, 768)
+✅ X_test:  (116661, 768)
 </pre></div>
 </div>
 </div>
