@@ -329,6 +329,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-final-machine-learning-2025-10">Proyecto Final Machine Learning 2025-10</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etl-y-eda">ETL y EDA</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizacion-y-embeddings">Tokenización y Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-benchmark">Modelos Benchmark</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptron-multicapa-mlp">Perceptrón Multicapa (MLP)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -363,235 +367,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">6</span><span class="n">f</span><span class="o">/</span><span class="n">tr98z70j73n1m4xh0tbwvs4h0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_8098</span><span class="o">/</span><span class="mf">1234065675.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># Cargar el dataset desde Huggin Face</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;akshatmehta98/amazon_reviews&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> 
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Mostrando estructura del dataset</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">load_dataset</span><span class="nt">(path, name, data_dir, data_files, split, cache_dir, features, download_config, download_mode, verification_mode, keep_in_memory, save_infos, revision, token, streaming, num_proc, storage_options, trust_remote_code, **config_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2059</span> 
-<span class="g g-Whitespace">   </span><span class="mi">2060</span>     <span class="c1"># Create a dataset builder</span>
-<span class="ne">-&gt; </span><span class="mi">2061</span>     <span class="n">builder_instance</span> <span class="o">=</span> <span class="n">load_dataset_builder</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">2062</span>         <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">2063</span>         <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">load_dataset_builder</span><span class="nt">(path, name, data_dir, data_files, cache_dir, features, download_config, download_mode, revision, token, storage_options, trust_remote_code, _require_default_config_name, **config_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1779</span>         <span class="n">download_config</span> <span class="o">=</span> <span class="n">download_config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">download_config</span> <span class="k">else</span> <span class="n">DownloadConfig</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1780</span>         <span class="n">download_config</span><span class="o">.</span><span class="n">storage_options</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">storage_options</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1781</span>     <span class="n">dataset_module</span> <span class="o">=</span> <span class="n">dataset_module_factory</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1782</span>         <span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1783</span>         <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">dataset_module_factory</span><span class="nt">(path, revision, download_config, download_mode, dynamic_modules_path, data_dir, data_files, cache_dir, trust_remote_code, _require_default_config_name, _require_custom_configs, **download_kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1618</span>                 <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1619</span>                     <span class="n">use_exported_dataset_infos</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="ne">-&gt; </span><span class="mi">1620</span>                 <span class="k">return</span> <span class="n">HubDatasetModuleFactoryWithoutScript</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1621</span>                     <span class="n">path</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1622</span>                     <span class="n">commit_hash</span><span class="o">=</span><span class="n">commit_hash</span><span class="p">,</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/load.py</span> in <span class="ni">get_module</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1015</span>             <span class="n">patterns</span> <span class="o">=</span> <span class="n">sanitize_patterns</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">metadata_configs</span><span class="o">.</span><span class="n">values</span><span class="p">()))[</span><span class="s2">&quot;data_files&quot;</span><span class="p">])</span>
-<span class="g g-Whitespace">   </span><span class="mi">1016</span>         <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1017</span>             <span class="n">patterns</span> <span class="o">=</span> <span class="n">get_data_patterns</span><span class="p">(</span><span class="n">base_path</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1018</span>         <span class="n">data_files</span> <span class="o">=</span> <span class="n">DataFilesDict</span><span class="o">.</span><span class="n">from_patterns</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1019</span>             <span class="n">patterns</span><span class="p">,</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/data_files.py</span> in <span class="ni">get_data_patterns</span><span class="nt">(base_path, download_config)</span>
-<span class="g g-Whitespace">    </span><span class="mi">472</span>     <span class="n">resolver</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">resolve_pattern</span><span class="p">,</span> <span class="n">base_path</span><span class="o">=</span><span class="n">base_path</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">474</span>         <span class="k">return</span> <span class="n">_get_data_files_patterns</span><span class="p">(</span><span class="n">resolver</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">475</span>     <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">476</span>         <span class="k">raise</span> <span class="n">EmptyDatasetError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The directory at </span><span class="si">{</span><span class="n">base_path</span><span class="si">}</span><span class="s2"> doesn&#39;t contain any data files&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/data_files.py</span> in <span class="ni">_get_data_files_patterns</span><span class="nt">(pattern_resolver)</span>
-<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="n">pattern</span> <span class="o">=</span> <span class="n">split_pattern</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{split}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">263</span>             <span class="n">data_files</span> <span class="o">=</span> <span class="n">pattern_resolver</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">264</span>         <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span>             <span class="k">continue</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/datasets/data_files.py</span> in <span class="ni">resolve_pattern</span><span class="nt">(pattern, base_path, allowed_extensions, download_config)</span>
-<span class="g g-Whitespace">    </span><span class="mi">359</span>     <span class="n">matched_paths</span> <span class="o">=</span> <span class="p">[</span>
-<span class="g g-Whitespace">    </span><span class="mi">360</span>         <span class="n">filepath</span> <span class="k">if</span> <span class="n">filepath</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">protocol_prefix</span><span class="p">)</span> <span class="k">else</span> <span class="n">protocol_prefix</span> <span class="o">+</span> <span class="n">filepath</span>
-<span class="nn">--&gt; 361         for filepath, info</span> in <span class="ni">fs.glob(pattern, detail=True, **glob_kwargs).items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">362</span>         <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span> <span class="ow">or</span> <span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;islink&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">filepath</span><span class="p">))))</span>
-<span class="g g-Whitespace">    </span><span class="mi">363</span>         <span class="ow">and</span> <span class="p">(</span><span class="n">xbasename</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">files_to_ignore</span><span class="p">)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">glob</span><span class="nt">(self, path, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">519</span>         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;expand_info&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">520</span>         <span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">resolve_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;revision&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">unresolve</span><span class="p">()</span>
-<span class="ne">--&gt; </span><span class="mi">521</span>         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">522</span> 
-<span class="g g-Whitespace">    </span><span class="mi">523</span>     <span class="k">def</span><span class="w"> </span><span class="nf">find</span><span class="p">(</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/fsspec/spec.py</span> in <span class="ni">glob</span><span class="nt">(self, path, maxdepth, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">607</span>                 <span class="n">depth</span> <span class="o">=</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span> 
-<span class="ne">--&gt; </span><span class="mi">609</span>         <span class="n">allpaths</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">maxdepth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span> <span class="n">withdirs</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">610</span> 
-<span class="g g-Whitespace">    </span><span class="mi">611</span>         <span class="n">pattern</span> <span class="o">=</span> <span class="n">glob_translate</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;/&quot;</span> <span class="k">if</span> <span class="n">ends_with_sep</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">))</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">find</span><span class="nt">(self, path, maxdepth, withdirs, detail, refresh, revision, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">554</span><span class="w">         </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">555</span><span class="sd">         if maxdepth:</span>
-<span class="ne">--&gt; </span><span class="mi">556</span><span class="sd">             return super().find(</span>
-<span class="g g-Whitespace">    </span><span class="mi">557</span><span class="sd">                 path, maxdepth=maxdepth, withdirs=withdirs, detail=detail, refresh=refresh, revision=revision, **kwargs</span>
-<span class="g g-Whitespace">    </span><span class="mi">558</span><span class="sd">             )</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/fsspec/spec.py</span> in <span class="ni">find</span><span class="nt">(self, path, maxdepth, withdirs, detail, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">500</span><span class="sd">             out[path] = self.info(path)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span><span class="sd"> </span>
-<span class="ne">--&gt; </span><span class="mi">502</span><span class="sd">         for _, dirs, files in self.walk(path, maxdepth, detail=True, **kwargs):</span>
-<span class="g g-Whitespace">    </span><span class="mi">503</span><span class="sd">             if withdirs:</span>
-<span class="g g-Whitespace">    </span><span class="mi">504</span><span class="sd">                 files.update(dirs)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">walk</span><span class="nt">(self, path, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">501</span><span class="sd">         kwargs = {&quot;expand_info&quot;: kwargs.get(&quot;detail&quot;, False), **kwargs}</span>
-<span class="g g-Whitespace">    </span><span class="mi">502</span><span class="sd">         path = self.resolve_path(path, revision=kwargs.get(&quot;revision&quot;)).unresolve()</span>
-<span class="ne">--&gt; </span><span class="mi">503</span><span class="sd">         yield from super().walk(path, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">504</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">505</span><span class="sd">     def glob(self, path: str, **kwargs) -&gt; List[str]:</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/fsspec/spec.py</span> in <span class="ni">walk</span><span class="nt">(self, path, maxdepth, topdown, on_error, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">425</span><span class="sd">         detail = kwargs.pop(&quot;detail&quot;, False)</span>
-<span class="g g-Whitespace">    </span><span class="mi">426</span><span class="sd">         try:</span>
-<span class="ne">--&gt; </span><span class="mi">427</span><span class="sd">             listing = self.ls(path, detail=True, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">428</span><span class="sd">         except (FileNotFoundError, OSError) as e:</span>
-<span class="g g-Whitespace">    </span><span class="mi">429</span><span class="sd">             if on_error == &quot;raise&quot;:</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">ls</span><span class="nt">(self, path, detail, refresh, revision, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">370</span><span class="sd">         kwargs = {&quot;expand_info&quot;: detail, **kwargs}</span>
-<span class="g g-Whitespace">    </span><span class="mi">371</span><span class="sd">         try:</span>
-<span class="ne">--&gt; </span><span class="mi">372</span><span class="sd">             out = self._ls_tree(path, refresh=refresh, revision=revision, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">373</span><span class="sd">         except EntryNotFoundError:</span>
-<span class="g g-Whitespace">    </span><span class="mi">374</span><span class="sd">             # Path could be a file</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_file_system.py</span> in <span class="ni">_ls_tree</span><span class="nt">(self, path, recursive, refresh, revision, expand_info)</span>
-<span class="g g-Whitespace">    </span><span class="mi">461</span><span class="sd">                 repo_type=resolved_path.repo_type,</span>
-<span class="g g-Whitespace">    </span><span class="mi">462</span><span class="sd">             )</span>
-<span class="ne">--&gt; </span><span class="mi">463</span><span class="sd">             for path_info in tree:</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span><span class="sd">                 if isinstance(path_info, RepoFile):</span>
-<span class="g g-Whitespace">    </span><span class="mi">465</span><span class="sd">                     cache_path_info = {</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/hf_api.py</span> in <span class="ni">list_repo_tree</span><span class="nt">(self, repo_id, path_in_repo, recursive, expand, revision, repo_type, token)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3056</span><span class="sd">         encoded_path_in_repo = &quot;/&quot; + quote(path_in_repo, safe=&quot;&quot;) if path_in_repo else &quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">3057</span><span class="sd">         tree_url = f&quot;{self.endpoint}/api/{repo_type}s/{repo_id}/tree/{revision}{encoded_path_in_repo}&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">3058</span><span class="sd">         for path_info in paginate(path=tree_url, headers=headers, params={&quot;recursive&quot;: recursive, &quot;expand&quot;: expand}):</span>
-<span class="g g-Whitespace">   </span><span class="mi">3059</span><span class="sd">             yield (RepoFile(**path_info) if path_info[&quot;type&quot;] == &quot;file&quot; else RepoFolder(**path_info))</span>
-<span class="g g-Whitespace">   </span><span class="mi">3060</span><span class="sd"> </span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/utils/_pagination.py</span> in <span class="ni">paginate</span><span class="nt">(path, params, headers)</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>     <span class="n">session</span> <span class="o">=</span> <span class="n">get_session</span><span class="p">()</span>
-<span class="ne">---&gt; </span><span class="mi">36</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>     <span class="n">hf_raise_for_status</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>     <span class="k">yield from</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">get</span><span class="nt">(self, url, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">600</span> 
-<span class="g g-Whitespace">    </span><span class="mi">601</span>         <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;allow_redirects&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">602</span>         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">603</span> 
-<span class="g g-Whitespace">    </span><span class="mi">604</span>     <span class="k">def</span><span class="w"> </span><span class="nf">options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">request</span><span class="nt">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="g g-Whitespace">    </span><span class="mi">587</span>         <span class="p">}</span>
-<span class="g g-Whitespace">    </span><span class="mi">588</span>         <span class="n">send_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">589</span>         <span class="n">resp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">prep</span><span class="p">,</span> <span class="o">**</span><span class="n">send_kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">590</span> 
-<span class="g g-Whitespace">    </span><span class="mi">591</span>         <span class="k">return</span> <span class="n">resp</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/sessions.py</span> in <span class="ni">send</span><span class="nt">(self, request, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span> 
-<span class="g g-Whitespace">    </span><span class="mi">702</span>         <span class="c1"># Send the request</span>
-<span class="ne">--&gt; </span><span class="mi">703</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">adapter</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span> 
-<span class="g g-Whitespace">    </span><span class="mi">705</span>         <span class="c1"># Total elapsed time of the request (approximately)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/huggingface_hub/utils/_http.py</span> in <span class="ni">send</span><span class="nt">(self, request, *args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span>             <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Send: </span><span class="si">{</span><span class="n">_curlify</span><span class="p">(</span><span class="n">request</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">95</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">96</span>             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">97</span>         <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">98</span>             <span class="n">request_id</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">X_AMZN_TRACE_ID</span><span class="p">)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/requests/adapters.py</span> in <span class="ni">send</span><span class="nt">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="g g-Whitespace">    </span><span class="mi">665</span> 
-<span class="g g-Whitespace">    </span><span class="mi">666</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">667</span>             <span class="n">resp</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">668</span>                 <span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">669</span>                 <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">urlopen</span><span class="nt">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">697</span> 
-<span class="g g-Whitespace">    </span><span class="mi">698</span>             <span class="c1"># Make the request on the httplib connection object.</span>
-<span class="ne">--&gt; </span><span class="mi">699</span>             <span class="n">httplib_response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_request</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">700</span>                 <span class="n">conn</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">701</span>                 <span class="n">method</span><span class="p">,</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">443</span>                     <span class="c1"># Python 3 (including for exceptions like SystemExit).</span>
-<span class="g g-Whitespace">    </span><span class="mi">444</span>                     <span class="c1"># Otherwise it looks like a bug in the code.</span>
-<span class="ne">--&gt; </span><span class="mi">445</span>                     <span class="n">six</span><span class="o">.</span><span class="n">raise_from</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">446</span>         <span class="k">except</span> <span class="p">(</span><span class="n">SocketTimeout</span><span class="p">,</span> <span class="n">BaseSSLError</span><span class="p">,</span> <span class="n">SocketError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">447</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_timeout</span><span class="p">(</span><span class="n">err</span><span class="o">=</span><span class="n">e</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout_value</span><span class="o">=</span><span class="n">read_timeout</span><span class="p">)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/packages/six.py</span> in <span class="ni">raise_from</span><span class="nt">(value, from_value)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/urllib3/connectionpool.py</span> in <span class="ni">_make_request</span><span class="nt">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">438</span>                 <span class="c1"># Python 3</span>
-<span class="g g-Whitespace">    </span><span class="mi">439</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">440</span>                     <span class="n">httplib_response</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">getresponse</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">441</span>                 <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">442</span>                     <span class="c1"># Remove the TypeError from the exception chain in</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/http/client.py</span> in <span class="ni">getresponse</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1375</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1376</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1377</span>                 <span class="n">response</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span>
-<span class="g g-Whitespace">   </span><span class="mi">1378</span>             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1379</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/http/client.py</span> in <span class="ni">begin</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>         <span class="c1"># read until we get a non-100 response</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">320</span>             <span class="n">version</span><span class="p">,</span> <span class="n">status</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_status</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>             <span class="k">if</span> <span class="n">status</span> <span class="o">!=</span> <span class="n">CONTINUE</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>                 <span class="k">break</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/http/client.py</span> in <span class="ni">_read_status</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">279</span> 
-<span class="g g-Whitespace">    </span><span class="mi">280</span>     <span class="k">def</span><span class="w"> </span><span class="nf">_read_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">281</span>         <span class="n">line</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">readline</span><span class="p">(</span><span class="n">_MAXLINE</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">282</span>         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">_MAXLINE</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">283</span>             <span class="k">raise</span> <span class="n">LineTooLong</span><span class="p">(</span><span class="s2">&quot;status line&quot;</span><span class="p">)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/socket.py</span> in <span class="ni">readinto</span><span class="nt">(self, b)</span>
-<span class="g g-Whitespace">    </span><span class="mi">714</span>         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">715</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">716</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sock</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">717</span>             <span class="k">except</span> <span class="n">timeout</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">718</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_timeout_occurred</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/ssl.py</span> in <span class="ni">recv_into</span><span class="nt">(self, buffer, nbytes, flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1273</span>                   <span class="s2">&quot;non-zero flags not allowed in calls to recv_into() on </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-<span class="g g-Whitespace">   </span><span class="mi">1274</span>                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">)</span>
-<span class="ne">-&gt; </span><span class="mi">1275</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">nbytes</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1276</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1277</span>             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">recv_into</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">,</span> <span class="n">flags</span><span class="p">)</span>
-
-<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/ssl.py</span> in <span class="ni">read</span><span class="nt">(self, len, buffer)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1131</span>         <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1132</span>             <span class="k">if</span> <span class="n">buffer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1133</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1134</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1135</span>                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sslobj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>DatasetDict({
+    train: Dataset({
+        features: [&#39;HelpfulnessNumerator&#39;, &#39;HelpfulnessDenominator&#39;, &#39;Summary&#39;, &#39;text&#39;, &#39;labels&#39;, &#39;sentiment_code&#39;, &#39;input_ids&#39;, &#39;attention_mask&#39;],
+        num_rows: 303316
+    })
+    test: Dataset({
+        features: [&#39;HelpfulnessNumerator&#39;, &#39;HelpfulnessDenominator&#39;, &#39;Summary&#39;, &#39;text&#39;, &#39;labels&#39;, &#39;sentiment_code&#39;, &#39;input_ids&#39;, &#39;attention_mask&#39;],
+        num_rows: 116661
+    })
+})
 </pre></div>
 </div>
 </div>
@@ -1219,9 +1004,163 @@ Valid split: (60664, 12)
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"model_id": "268ee2003c334ddab6c21ecac2c4e5fa", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "765a9e7b8fc94ef282cfc78c004c7eee", "version_major": 2, "version_minor": 0}</script><script type="application/vnd.jupyter.widget-view+json">{"model_id": "0431676e728f4b649f952a9bb13ba160", "version_major": 2, "version_minor": 0}</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ X_train: (242652, 768)
-✅ X_valid: (60664, 768)
-✅ X_test:  (116661, 768)
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e8cb082d4abb4684b64382df09070caa"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">folders</span><span class="o">/</span><span class="mi">6</span><span class="n">f</span><span class="o">/</span><span class="n">tr98z70j73n1m4xh0tbwvs4h0000gn</span><span class="o">/</span><span class="n">T</span><span class="o">/</span><span class="n">ipykernel_3903</span><span class="o">/</span><span class="mf">1125858030.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Generar embeddings</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">X_train</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">df_train_split</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">X_valid</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">df_valid</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">X_test</span>  <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">df_test</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>  <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/sentence_transformers/SentenceTransformer.py</span> in <span class="ni">encode</span><span class="nt">(self, sentences, prompt_name, prompt, batch_size, show_progress_bar, output_value, precision, convert_to_numpy, convert_to_tensor, device, normalize_embeddings, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">555</span> 
+<span class="g g-Whitespace">    </span><span class="mi">556</span>             <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<span class="ne">--&gt; </span><span class="mi">557</span>                 <span class="n">out_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">558</span>                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;hpu&quot;</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">559</span>                     <span class="n">out_features</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">out_features</span><span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/sentence_transformers/SentenceTransformer.py</span> in <span class="ni">forward</span><span class="nt">(self, input, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">622</span>             <span class="n">module_kwarg_keys</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span> <span class="p">[])</span>
+<span class="g g-Whitespace">    </span><span class="mi">623</span>             <span class="n">module_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">module_kwarg_keys</span><span class="p">}</span>
+<span class="ne">--&gt; </span><span class="mi">624</span>             <span class="nb">input</span> <span class="o">=</span> <span class="n">module</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="o">**</span><span class="n">module_kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">625</span>         <span class="k">return</span> <span class="nb">input</span>
+<span class="g g-Whitespace">    </span><span class="mi">626</span> 
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1739</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="c1"># torchrec tests the code consistency with the following code</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1748</span>                 <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1750</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>         <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/sentence_transformers/models/Transformer.py</span> in <span class="ni">forward</span><span class="nt">(self, features, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">440</span>         <span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">441</span> 
+<span class="ne">--&gt; </span><span class="mi">442</span>         <span class="n">output_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_model</span><span class="p">(</span><span class="o">**</span><span class="n">trans_features</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">return_dict</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">443</span>         <span class="n">output_tokens</span> <span class="o">=</span> <span class="n">output_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">444</span> 
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1739</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="c1"># torchrec tests the code consistency with the following code</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1748</span>                 <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1750</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>         <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/transformers/models/mpnet/modeling_mpnet.py</span> in <span class="ni">forward</span><span class="nt">(self, input_ids, attention_mask, position_ids, head_mask, inputs_embeds, output_attentions, output_hidden_states, return_dict, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span>         <span class="n">head_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_head_mask</span><span class="p">(</span><span class="n">head_mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">num_hidden_layers</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span>         <span class="n">embedding_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embeddings</span><span class="p">(</span><span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">position_ids</span><span class="o">=</span><span class="n">position_ids</span><span class="p">,</span> <span class="n">inputs_embeds</span><span class="o">=</span><span class="n">inputs_embeds</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">544</span>         <span class="n">encoder_outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">545</span>             <span class="n">embedding_output</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span>             <span class="n">attention_mask</span><span class="o">=</span><span class="n">extended_attention_mask</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1739</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="c1"># torchrec tests the code consistency with the following code</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1748</span>                 <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1750</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>         <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/transformers/models/mpnet/modeling_mpnet.py</span> in <span class="ni">forward</span><span class="nt">(self, hidden_states, attention_mask, head_mask, output_attentions, output_hidden_states, return_dict, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span>                 <span class="n">all_hidden_states</span> <span class="o">=</span> <span class="n">all_hidden_states</span> <span class="o">+</span> <span class="p">(</span><span class="n">hidden_states</span><span class="p">,)</span>
+<span class="g g-Whitespace">    </span><span class="mi">333</span> 
+<span class="ne">--&gt; </span><span class="mi">334</span>             <span class="n">layer_outputs</span> <span class="o">=</span> <span class="n">layer_module</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span>                 <span class="n">hidden_states</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">336</span>                 <span class="n">attention_mask</span><span class="p">,</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1739</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="c1"># torchrec tests the code consistency with the following code</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1748</span>                 <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1750</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>         <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/transformers/models/mpnet/modeling_mpnet.py</span> in <span class="ni">forward</span><span class="nt">(self, hidden_states, attention_mask, head_mask, position_bias, output_attentions, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">302</span> 
+<span class="g g-Whitespace">    </span><span class="mi">303</span>         <span class="n">intermediate_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">intermediate</span><span class="p">(</span><span class="n">attention_output</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">304</span>         <span class="n">layer_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">intermediate_output</span><span class="p">,</span> <span class="n">attention_output</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">305</span>         <span class="n">outputs</span> <span class="o">=</span> <span class="p">(</span><span class="n">layer_output</span><span class="p">,)</span> <span class="o">+</span> <span class="n">outputs</span>
+<span class="g g-Whitespace">    </span><span class="mi">306</span>         <span class="k">return</span> <span class="n">outputs</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1739</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="c1"># torchrec tests the code consistency with the following code</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1748</span>                 <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1750</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>         <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/transformers/models/mpnet/modeling_mpnet.py</span> in <span class="ni">forward</span><span class="nt">(self, hidden_states, input_tensor)</span>
+<span class="g g-Whitespace">    </span><span class="mi">271</span>         <span class="n">hidden_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dense</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">272</span>         <span class="n">hidden_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">hidden_states</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">273</span>         <span class="n">hidden_states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">hidden_states</span> <span class="o">+</span> <span class="n">input_tensor</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>         <span class="k">return</span> <span class="n">hidden_states</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span> 
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1737</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1738</span>         <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1739</span>             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1740</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1741</span>     <span class="c1"># torchrec tests the code consistency with the following code</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/module.py</span> in <span class="ni">_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1748</span>                 <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1749</span>                 <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1750</span>             <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1751</span> 
+<span class="g g-Whitespace">   </span><span class="mi">1752</span>         <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/modules/normalization.py</span> in <span class="ni">forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">215</span> 
+<span class="g g-Whitespace">    </span><span class="mi">216</span>     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">217</span>         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span>             <span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">normalized_shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">eps</span>
+<span class="g g-Whitespace">    </span><span class="mi">219</span>         <span class="p">)</span>
+
+<span class="nn">/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/torch/nn/functional.py</span> in <span class="ni">layer_norm</span><span class="nt">(input, normalized_shape, weight, bias, eps)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2908</span>             <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">2909</span>         <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">2910</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">layer_norm</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">2911</span>         <span class="nb">input</span><span class="p">,</span> <span class="n">normalized_shape</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">enabled</span>
+<span class="g g-Whitespace">   </span><span class="mi">2912</span>     <span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
@@ -1254,6 +1193,7 @@ Valid split: (60664, 12)
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Para cargar los embeddings y etiquetas en otro script, usar:</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;X_train_embeddings.npy&quot;</span><span class="p">)</span>
 <span class="n">X_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;X_valid_embeddings.npy&quot;</span><span class="p">)</span>
 <span class="n">X_test</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;X_test_embeddings.npy&quot;</span><span class="p">)</span>
@@ -1265,6 +1205,400 @@ Valid split: (60664, 12)
 </div>
 </div>
 </div>
+</section>
+<section id="modelos-benchmark">
+<h3>Modelos Benchmark<a class="headerlink" href="#modelos-benchmark" title="Link to this heading">#</a></h3>
+<section id="perceptron-multicapa-mlp">
+<h4>Perceptrón Multicapa (MLP)<a class="headerlink" href="#perceptron-multicapa-mlp" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Librerias necesarias</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.keras.optimizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Adam</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scikeras.wrappers</span><span class="w"> </span><span class="kn">import</span> <span class="n">KerasClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_auc_score</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos función generadora del modelo</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_model</span><span class="p">(</span><span class="n">neurons</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">dropout_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">neurons</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">768</span><span class="p">,)))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">neurons</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">))</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;softmax&#39;</span><span class="p">))</span>  <span class="c1"># 3 clases</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">),</span>
+                  <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;sparse_categorical_crossentropy&#39;</span><span class="p">,</span>
+                  <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># KerasClassifier wrapper</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">KerasClassifier</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">create_model</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="c1"># Grid de hiperparámetros</span>
+<span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;model__neurons&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">],</span>
+    <span class="s1">&#39;model__dropout_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span>
+    <span class="s1">&#39;model__learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0005</span><span class="p">],</span>
+    <span class="s1">&#39;batch_size&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">64</span><span class="p">],</span>
+    <span class="s1">&#39;epochs&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1"># GridSearchCV</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">param_grid</span><span class="o">=</span><span class="n">param_grid</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Ajustar el modelo</span>
+<span class="n">grid_result</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Resultados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejor score (accuracy): </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">grid_result</span><span class="o">.</span><span class="n">best_score_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mejores hiperparámetros:&quot;</span><span class="p">,</span> <span class="n">grid_result</span><span class="o">.</span><span class="n">best_params_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Fitting 3 folds for each of 8 candidates, totalling 24 fits
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+2025-04-01 15:51:05.665495: I metal_plugin/src/device/metal_device.cc:1154] Metal device set to: Apple M4 Pro
+2025-04-01 15:51:05.665655: I metal_plugin/src/device/metal_device.cc:296] systemMemory: 24.00 GB
+2025-04-01 15:51:05.665659: I metal_plugin/src/device/metal_device.cc:313] maxCacheSize: 8.00 GB
+2025-04-01 15:51:05.665965: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:305] Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
+2025-04-01 15:51:05.665982: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:271] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 0 MB memory) -&gt; physical PluggableDevice (device: 0, name: METAL, pci bus id: &lt;undefined&gt;)
+2025-04-01 15:51:06.329349: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:117] Plugin optimizer for device_type GPU is enabled.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.001, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.001, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.001, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.001, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.001, model__neurons=256; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.001, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.0005, model__neurons=128; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.0005, model__neurons=128; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.0005, model__neurons=128; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.0005, model__neurons=256; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.0005, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.3, model__learning_rate=0.0005, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.001, model__neurons=128; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.001, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.001, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.001, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.001, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.001, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.0005, model__neurons=128; total time= 2.5min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.0005, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.0005, model__neurons=128; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.0005, model__neurons=256; total time= 2.6min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.0005, model__neurons=256; total time= 2.7min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[CV] END batch_size=64, epochs=10, model__dropout_rate=0.4, model__learning_rate=0.0005, model__neurons=256; total time= 2.7min
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/keras/src/layers/core/dense.py:87: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mejor score (accuracy): 0.7092
+Mejores hiperparámetros: {&#39;batch_size&#39;: 64, &#39;epochs&#39;: 10, &#39;model__dropout_rate&#39;: 0.4, &#39;model__learning_rate&#39;: 0.0005, &#39;model__neurons&#39;: 128}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Guardando el mejor modelo</span>
+<span class="c1"># Obtener el mejor modelo ya entrenado</span>
+<span class="n">best_model_MLP</span> <span class="o">=</span> <span class="n">grid_result</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">model_</span>
+
+<span class="c1"># Guardar el modelo</span>
+<span class="n">best_model_MLP</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;best_model_MLP.h5&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;✅ Mejor modelo guardado como &#39;best_model_MLP.h5&#39;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save(&#39;my_model.keras&#39;)` or `keras.saving.save_model(model, &#39;my_model.keras&#39;)`. 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>✅ Mejor modelo guardado como &#39;best_model_MLP.h5&#39;.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Liberías necesarias para evaluar el modelo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">f1_score</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">roc_auc_score</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predecir probabilidades</span>
+<span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">best_model_MLP</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">y_valid_pred</span> <span class="o">=</span> <span class="n">best_model_MLP</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_valid</span><span class="p">)</span>
+<span class="n">y_test_pred</span>  <span class="o">=</span> <span class="n">best_model_MLP</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Convertir a etiquetas</span>
+<span class="n">y_train_pred_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_train_pred</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_valid_pred_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_valid_pred</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_test_pred_labels</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_test_pred</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Función para imprimir solo las métricas importantes</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluar</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">nombre</span><span class="o">=</span><span class="s2">&quot;Conjunto&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">📊 Resultados - </span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy  : </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Precision : </span><span class="si">{</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">,</span><span class="w"> </span><span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recall    : </span><span class="si">{</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">,</span><span class="w"> </span><span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;F1-score  : </span><span class="si">{</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">,</span><span class="w"> </span><span class="n">average</span><span class="o">=</span><span class="s1">&#39;weighted&#39;</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">auc</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_proba</span><span class="p">,</span> <span class="n">multi_class</span><span class="o">=</span><span class="s1">&#39;ovr&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;AUC       : </span><span class="si">{</span><span class="n">auc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AUC       : ⚠️ No se pudo calcular&quot;</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz de confusión:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+
+<span class="c1"># Aplicar a cada conjunto</span>
+<span class="n">evaluar</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred_labels</span><span class="p">,</span> <span class="n">y_train_pred</span><span class="p">,</span> <span class="s2">&quot;Entrenamiento&quot;</span><span class="p">)</span>
+<span class="n">evaluar</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y_valid_pred_labels</span><span class="p">,</span> <span class="n">y_valid_pred</span><span class="p">,</span> <span class="s2">&quot;Validación&quot;</span><span class="p">)</span>
+<span class="n">evaluar</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span>  <span class="n">y_test_pred_labels</span><span class="p">,</span>  <span class="n">y_test_pred</span><span class="p">,</span>  <span class="s2">&quot;Testing&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">7583/7583</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">6s</span> 851us/step
+<span class=" -Color -Color-Bold">1896/1896</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">2s</span> 831us/step
+<span class=" -Color -Color-Bold">3646/3646</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 841us/step
+
+📊 Resultados - Entrenamiento
+Accuracy  : 0.7129
+Precision : 0.7054
+Recall    : 0.7129
+F1-score  : 0.7071
+AUC       : 0.8729
+Matriz de confusión:
+[[73044 15108  5153]
+ [21785 36700 14597]
+ [ 3888  9126 63251]]
+
+📊 Resultados - Validación
+Accuracy  : 0.7134
+Precision : 0.7064
+Recall    : 0.7134
+F1-score  : 0.7082
+AUC       : 0.8725
+Matriz de confusión:
+[[18172  3916  1239]
+ [ 5378  9328  3565]
+ [ 1028  2262 15776]]
+
+📊 Resultados - Testing
+Accuracy  : 0.7110
+Precision : 0.7036
+Recall    : 0.7110
+F1-score  : 0.7054
+AUC       : 0.8709
+Matriz de confusión:
+[[35118  7402  2588]
+ [10418 17527  6963]
+ [ 1962  4386 30297]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="c1"># Función para graficar y guardar la matriz de confusión</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_conf_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+                <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negativo&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;Positivo&#39;</span><span class="p">],</span>
+                <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Negativo&#39;</span><span class="p">,</span> <span class="s1">&#39;Neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;Positivo&#39;</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Etiqueta predicha&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Etiqueta real&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Generar y guardar las matrices de confusión</span>
+<span class="n">plot_conf_matrix</span><span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_train_pred_labels</span><span class="p">,</span> <span class="s2">&quot;Matriz de Confusión - Entrenamiento&quot;</span><span class="p">,</span> <span class="s2">&quot;conf_matrix_train_MLP.png&quot;</span><span class="p">)</span>
+<span class="n">plot_conf_matrix</span><span class="p">(</span><span class="n">y_valid</span><span class="p">,</span> <span class="n">y_valid_pred_labels</span><span class="p">,</span> <span class="s2">&quot;Matriz de Confusión - Validación&quot;</span><span class="p">,</span> <span class="s2">&quot;conf_matrix_valid_MLP.png&quot;</span><span class="p">)</span>
+<span class="n">plot_conf_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_test_pred_labels</span><span class="p">,</span> <span class="s2">&quot;Matriz de Confusión - Testing&quot;</span><span class="p">,</span> <span class="s2">&quot;conf_matrix_test_MLP.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5fc6119b7d04ce938b5defb5082b6e47b098cddc0f9d52f4d6ab11546898e695.png" src="_images/5fc6119b7d04ce938b5defb5082b6e47b098cddc0f9d52f4d6ab11546898e695.png" />
+<img alt="_images/83b26591cd0d2704bea2f03e04004a8c5368f7c94028c0ef7e643f9633631b8a.png" src="_images/83b26591cd0d2704bea2f03e04004a8c5368f7c94028c0ef7e643f9633631b8a.png" />
+<img alt="_images/a540f32b9632ba7d18f82b577355f68483756f9581161f09cb473d2d6df86dcf.png" src="_images/a540f32b9632ba7d18f82b577355f68483756f9581161f09cb473d2d6df86dcf.png" />
+</div>
+</div>
+</section>
 </section>
 </section>
 </section>
@@ -1318,6 +1652,10 @@ Valid split: (60664, 12)
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proyecto-final-machine-learning-2025-10">Proyecto Final Machine Learning 2025-10</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#etl-y-eda">ETL y EDA</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizacion-y-embeddings">Tokenización y Embeddings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelos-benchmark">Modelos Benchmark</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptron-multicapa-mlp">Perceptrón Multicapa (MLP)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
