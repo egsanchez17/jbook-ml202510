@@ -34,6 +34,6 @@ Here is a preview of the cell contents:
 -------------------
 ['# Generar embeddings', "X_train = model.encode(df_train_split['text'].tolist(), show_progress_bar=True)", "X_valid = model.encode(df_valid['text'].tolist(), show_progress_bar=True)", "X_test  = model.encode(df_test['text'].tolist(),  show_progress_bar=True)", '']
 ...
-['', '# Confirmar formas', 'print("✅ X_train:", X_train.shape)', 'print("✅ X_valid:", X_valid.shape)', 'print("✅ X_test: ", X_test.shape)']
+['', '# Confirmar formas', 'print("X_train:", X_train.shape)', 'print("X_valid:", X_valid.shape)', 'print("X_test: ", X_test.shape)']
 -------------------
 
