@@ -1,15 +1,4 @@
 Traceback (most recent call last):
-  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 627, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/util.py", line 89, in ensure_async
-    result = await obj
-  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/jupyter_client/channels.py", line 230, in get_msg
-    raise Empty
-_queue.Empty
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
   File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
   File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 1117, in execute
@@ -22,18 +11,84 @@ Traceback (most recent call last):
     return future.result()
   File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 558, in async_execute
     await self.async_execute_cell(
-  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 846, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 651, in _async_poll_for_reply
-    await self._async_handle_timeout(timeout, cell)
-  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 701, in _async_handle_timeout
-    raise CellTimeoutError.error_from_timeout_and_cell(
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-['# Generar embeddings', "X_train = model.encode(df_train_split['text'].tolist(), show_progress_bar=True)", "X_valid = model.encode(df_valid['text'].tolist(), show_progress_bar=True)", "X_test  = model.encode(df_test['text'].tolist(),  show_progress_bar=True)", '']
-...
-['', '# Confirmar formas', 'print("X_train:", X_train.shape)', 'print("X_valid:", X_valid.shape)', 'print("X_test: ", X_test.shape)']
--------------------
+  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 862, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/nbclient/client.py", line 765, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Librerías necesarias
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Histograma de longitud en palabras
+plt.figure(figsize=(10,5))
+sns.histplot(df_train['length_words'], bins=50, kde=True)
+plt.title('Distribución de la longitud de reseñas (palabras)')
+plt.xlabel('Número de palabras')
+plt.ylabel('Frecuencia')
+plt.show()
+
+# Histograma de longitud en caracteres
+plt.figure(figsize=(10,5))
+sns.histplot(df_train['length_chars'], bins=50, kde=True, color='orange')
+plt.title('Distribución de la longitud de reseñas (caracteres)')
+plt.xlabel('Número de caracteres')
+plt.ylabel('Frecuencia')
+plt.show()
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mImportError[0m                               Traceback (most recent call last)
+[0;32m/var/folders/6f/tr98z70j73n1m4xh0tbwvs4h0000gn/T/ipykernel_24510/2910781278.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;31m# Librerías necesarias[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 2[0;31m [0;32mimport[0m [0mmatplotlib[0m[0;34m.[0m[0mpyplot[0m [0;32mas[0m [0mplt[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      3[0m [0;32mimport[0m [0mseaborn[0m [0;32mas[0m [0msns[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0;34m[0m[0m
+[1;32m      5[0m [0;31m# Histograma de longitud en palabras[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/matplotlib/__init__.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    107[0m [0;31m# cbook must import matplotlib only within function[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    108[0m [0;31m# definitions, so it is safe to import from it here.[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 109[0;31m [0;32mfrom[0m [0;34m.[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0m_version[0m[0;34m,[0m [0mcbook[0m[0;34m,[0m [0mdocstring[0m[0;34m,[0m [0mrcsetup[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    110[0m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0mcbook[0m [0;32mimport[0m [0mMatplotlibDeprecationWarning[0m[0;34m,[0m [0msanitize_sequence[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    111[0m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0mcbook[0m [0;32mimport[0m [0mmplDeprecation[0m  [0;31m# deprecated[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/matplotlib/rcsetup.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     25[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mcbook[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     26[0m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0mcbook[0m [0;32mimport[0m [0mls_mapper[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 27[0;31m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0mcolors[0m [0;32mimport[0m [0mColormap[0m[0;34m,[0m [0mis_color_like[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     28[0m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0mfontconfig_pattern[0m [0;32mimport[0m [0mparse_fontconfig_pattern[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     29[0m [0;32mfrom[0m [0mmatplotlib[0m[0;34m.[0m[0m_enums[0m [0;32mimport[0m [0mJoinStyle[0m[0;34m,[0m [0mCapStyle[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/matplotlib/colors.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     54[0m [0;32mimport[0m [0mmatplotlib[0m [0;32mas[0m [0mmpl[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     55[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 56[0;31m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mcbook[0m[0;34m,[0m [0mscale[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m     57[0m [0;32mfrom[0m [0;34m.[0m[0m_color_data[0m [0;32mimport[0m [0mBASE_COLORS[0m[0;34m,[0m [0mTABLEAU_COLORS[0m[0;34m,[0m [0mCSS4_COLORS[0m[0;34m,[0m [0mXKCD_COLORS[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     58[0m [0;34m[0m[0m
+
+[0;32m/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/matplotlib/scale.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     21[0m [0;32mimport[0m [0mmatplotlib[0m [0;32mas[0m [0mmpl[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     22[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mdocstring[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 23[0;31m from matplotlib.ticker import (
+[0m[1;32m     24[0m     [0mNullFormatter[0m[0;34m,[0m [0mScalarFormatter[0m[0;34m,[0m [0mLogFormatterSciNotation[0m[0;34m,[0m [0mLogitFormatter[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+[1;32m     25[0m     [0mNullLocator[0m[0;34m,[0m [0mLogLocator[0m[0;34m,[0m [0mAutoLocator[0m[0;34m,[0m [0mAutoMinorLocator[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/matplotlib/ticker.py[0m in [0;36m<module>[0;34m[0m
+[1;32m    134[0m [0;32mimport[0m [0mmatplotlib[0m [0;32mas[0m [0mmpl[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    135[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m,[0m [0mcbook[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 136[0;31m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0mtransforms[0m [0;32mas[0m [0mmtransforms[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m    137[0m [0;34m[0m[0m
+[1;32m    138[0m [0m_log[0m [0;34m=[0m [0mlogging[0m[0;34m.[0m[0mgetLogger[0m[0;34m([0m[0m__name__[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+
+[0;32m/opt/miniconda3/envs/ml_venv/lib/python3.9/site-packages/matplotlib/transforms.py[0m in [0;36m<module>[0;34m[0m
+[1;32m     44[0m [0;34m[0m[0m
+[1;32m     45[0m [0;32mfrom[0m [0mmatplotlib[0m [0;32mimport[0m [0m_api[0m[0;34m[0m[0;34m[0m[0m
+[0;32m---> 46[0;31m from matplotlib._path import (
+[0m[1;32m     47[0m     affine_transform, count_bboxes_overlapping_bbox, update_path_extents)
+[1;32m     48[0m [0;32mfrom[0m [0;34m.[0m[0mpath[0m [0;32mimport[0m [0mPath[0m[0;34m[0m[0;34m[0m[0m
+
+[0;31mImportError[0m: numpy.core.multiarray failed to import
+ImportError: numpy.core.multiarray failed to import
 
